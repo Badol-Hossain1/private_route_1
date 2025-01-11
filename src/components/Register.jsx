@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
+import AuthProvider, { AuthContext } from '../context/AuthProvider';
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -10,7 +12,15 @@ const Register = () => {
     console.log('🚀 ~ handleRegister ~ email:', email);
     const password = e.target.password.value;
     console.log('🚀 ~ handleRegister ~ password:', password);
+    createUser(email, password)
+      .then((result) => {
+        console.log('🚀 ~ handleRegister ~ result:', result.user);
+      })
+      .catch((e) => {
+        console.log('🚀 ~ handleRegister ~ e:', e);
+      });
   };
+
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
