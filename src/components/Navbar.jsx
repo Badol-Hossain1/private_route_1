@@ -4,7 +4,7 @@ import { NavLink } from 'react-router';
 const Navbar = () => {
   const navBar = (
     <>
-      <li>
+      <li className="flex gap-4">
         <NavLink to="/">Home</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/register">Register</NavLink>
