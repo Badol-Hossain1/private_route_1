@@ -1,16 +1,19 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthProvider';
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     loginUser(email, password)
       .then((res) => {
+        e.target.reset();
         console.log('🚀 ~ handleLogin ~ res:', res);
+        navigate('/');
       })
       .catch((error) => {
         console.log(error);
